@@ -380,8 +380,8 @@ body.is-open .pushp-btn{opacity:1;pointer-events:auto}
   clip:rect(0,0,0,0);white-space:nowrap;border:0;
 }
 .hero-dates{
-  margin:.7rem 0 0;font-family:var(--font-serif);font-weight:700;
-  font-size:clamp(1.02rem,4vw,1.5rem);letter-spacing:.16em;color:var(--wine-deep);
+  margin:.7rem 0 0;font-family:var(--font-serif);font-style:italic;font-weight:500;
+  font-size:clamp(1.05rem,4vw,1.55rem);letter-spacing:.04em;color:var(--wine-deep);
   text-shadow:0 1px 0 rgba(255,244,247,.55);
 }
 .hero-host{
@@ -415,10 +415,6 @@ body.is-open .reveal-h{
    ═══════════════════════════════════════════════════════════ */
 .sec{position:relative;padding:var(--sec-pad) 0;background:var(--paper);overflow:hidden}
 .sec--invite{padding-top:clamp(30px,6vw,64px)}
-.sec--darshan{background:
-  radial-gradient(1000px 560px at 80% 0%, rgba(122,30,30,.14), transparent 60%),
-  radial-gradient(900px 520px at 10% 100%, rgba(184,132,45,.22), transparent 60%),
-  linear-gradient(178deg,#F4E3C0,#FBF2DE 46%,#F2DFBB)}
 .sec--family{background:
   radial-gradient(760px 460px at 22% 4%, rgba(120,70,168,.09), transparent 56%),
   radial-gradient(900px 540px at 88% 88%, rgba(242,163,60,.3), transparent 62%),
@@ -542,39 +538,6 @@ body.is-open .reveal-h{
 }
 
 /* ═══════════════════════════════════════════════════════════
-   DARSHAN TIMELINE
-   ═══════════════════════════════════════════════════════════ */
-.timeline{list-style:none;margin:0;padding:0;position:relative;max-width:760px;margin-inline:auto}
-.timeline::before{
-  content:"";position:absolute;left:clamp(28px,7vw,44px);top:14px;bottom:14px;width:2px;
-  background:linear-gradient(180deg,transparent,var(--gold-mid) 12%,var(--gold-mid) 88%,transparent);
-  opacity:.6;
-}
-.tl-row{margin-bottom:clamp(16px,2.8vw,26px)}
-.tl-row:last-child{margin-bottom:0}
-.tl-node{
-  width:100%;display:flex;align-items:center;gap:clamp(16px,3vw,26px);text-align:left;
-  padding:clamp(16px,3vw,24px) clamp(18px,3.4vw,30px);border-radius:4px;
-  background:linear-gradient(160deg,rgba(255,252,244,.95),rgba(250,240,218,.95));
-  border:1px solid rgba(184,132,45,.36);
-  box-shadow:0 10px 28px rgba(74,36,16,.1);
-}
-
-.tl-dot{
-  flex:none;width:clamp(52px,10vw,66px);height:clamp(52px,10vw,66px);border-radius:50%;
-  display:grid;place-items:center;
-  background:radial-gradient(ellipse at 38% 28%,#FFF4D6,#EBCE8D 44%,#C08E33);
-  border:1px solid rgba(122,74,18,.35);
-  box-shadow:0 6px 16px rgba(74,36,16,.2), inset 0 -4px 8px rgba(122,74,18,.28);
-}
-.tl-dot svg{width:52%;height:auto}
-.tl-node--final .tl-dot{background:radial-gradient(ellipse at 38% 28%,#FFE0A6,#E2711D 62%,#9C3E10)}
-.tl-node--final .tl-dot svg{width:66%}
-
-.tl-body{display:flex;flex-direction:column;gap:4px;min-width:0}
-.tl-date{font-family:var(--font-display);font-size:clamp(1.14rem,4vw,1.6rem);color:var(--maroon);line-height:1.2}
-
-/* ═══════════════════════════════════════════════════════════
    FAMILY
    ═══════════════════════════════════════════════════════════ */
 .family-shot{position:relative;margin:0 auto;width:min(560px,92vw);display:flex;flex-direction:column;align-items:center;gap:20px}
@@ -677,14 +640,12 @@ body.is-open .reveal-h{
 
 .footer-invited{margin:0 0 .6rem;font-size:.68rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--wine-deep);text-shadow:0 1px 0 rgba(255,246,249,.5)}
 .footer-family{
-  margin:0;font-family:var(--font-display);font-weight:700;line-height:1.24;
-  font-size:clamp(1.3rem,5.4vw,2.9rem);text-wrap:balance;
-  background:linear-gradient(180deg,#A9761E 0%,#9C4867 45%,#6B1633 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  -webkit-text-stroke:.6px rgba(40,10,20,.45);
-  text-shadow:0 1px 0 rgba(255,244,247,.5), 0 1px 8px rgba(40,10,20,.3);
+  margin:0;font-family:var(--font-serif);font-style:italic;font-weight:500;line-height:1.3;
+  font-size:clamp(1.15rem,4vw,2rem);text-wrap:balance;letter-spacing:.01em;
+  color:var(--wine-deep);
+  text-shadow:0 1px 0 rgba(255,244,247,.5);
 }
-.footer-family span{font-size:.66em;opacity:.9}
+.footer-family span{font-size:.82em;opacity:.85;font-style:normal}
 .sacred-footer .divider{color:rgba(255,222,232,.7)}
 .sacred-footer .divider i{background:linear-gradient(90deg,transparent,rgba(255,222,232,.8),transparent)}
 
