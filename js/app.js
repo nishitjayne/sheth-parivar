@@ -251,7 +251,10 @@
       toggle: function () {
         on = !on;
         if (on) {
-          if (haveTrack) { track.play().catch(startSynth); } else { startSynth(); }
+          // always try the real track first — canplaythrough only fires once
+          // loading has started, and preload="none" means that's on this
+          // very play() call, so haveTrack can't be trusted to gate it.
+          track.play().then(function () { haveTrack = true; }).catch(startSynth);
         } else {
           track.pause();
           stopSynth();
@@ -286,6 +289,11 @@
     if (opened) return;
     opened = true;
     Audio_.ding();
+    var musicOn = Audio_.toggle();
+    if (musicBtn) {
+      musicBtn.setAttribute('aria-pressed', String(musicOn));
+      $('use', musicBtn).setAttribute('href', musicOn ? '#i-sound-on' : '#i-sound-off');
+    }
     curtain.classList.add('is-open');
     unlockScroll();
     document.body.classList.add('is-open');
