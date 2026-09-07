@@ -9,6 +9,23 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* body.is-locked pins the body via position:fixed (to stop background
+     scroll under a modal); that collapses the page height, so we have to
+     save/restore scrollY by hand or the page snaps back to the top. */
+  function lockScroll() {
+    var y = window.scrollY || window.pageYOffset || 0;
+    document.body.dataset.scrollY = y;
+    document.body.style.top = -y + 'px';
+    document.body.classList.add('is-locked');
+  }
+  function unlockScroll() {
+    var y = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.classList.remove('is-locked');
+    document.body.style.top = '';
+    document.documentElement.scrollTop = y;
+    document.body.scrollTop = y;
+  }
+
   function el(name, attrs) {
     var n = document.createElementNS(SVG_NS, name);
     for (var k in attrs) { n.setAttribute(k, attrs[k]); }
@@ -270,7 +287,7 @@
     opened = true;
     Audio_.ding();
     curtain.classList.add('is-open');
-    document.body.classList.remove('is-locked');
+    unlockScroll();
     document.body.classList.add('is-open');
     $$('.reveal-h').forEach(function (n) { n.style.setProperty('--step', n.dataset.step || 1); });
     showersPetals(26);
@@ -282,7 +299,7 @@
   // ?skip — deep-link straight past the curtain (handy for previews / re-visits)
   if (/(^|[?&])skip(=|&|$)/.test(location.search)) {
     curtain.classList.add('is-gone');
-    document.body.classList.remove('is-locked');
+    unlockScroll();
     document.body.classList.add('is-open');
     opened = true;
     $$('.reveal-h').forEach(function (n) { n.style.setProperty('--step', n.dataset.step || 1); });
@@ -392,15 +409,15 @@
     $('#modalDesc').innerHTML = d.desc;
     lastFocus = document.activeElement;
     modal.hidden = false;
-    document.body.classList.add('is-locked');
+    lockScroll();
     $('.modal-close', modal).focus();
     Audio_.ding();
   }
 
   function closeModal() {
     modal.hidden = true;
-    document.body.classList.remove('is-locked');
-    if (lastFocus) lastFocus.focus();
+    unlockScroll();
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
   }
 
   $$('.tl-node').forEach(function (b) {
