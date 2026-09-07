@@ -369,13 +369,13 @@ body.is-open .pushp-btn{opacity:1;pointer-events:auto}
 .hero-title-sm{font-size:.42em;vertical-align:.5em;-webkit-text-fill-color:#FFD98E;filter:none}
 .hero-year{display:inline-block}
 .hero-dates{
-  margin:.7rem 0 0;font-family:var(--font-serif);font-weight:500;
-  font-size:clamp(1.02rem,4vw,1.5rem);letter-spacing:.16em;color:#FFEAC0;
-  text-shadow:0 2px 10px rgba(60,26,6,.6);
+  margin:.7rem 0 0;font-family:var(--font-serif);font-weight:600;
+  font-size:clamp(1.02rem,4vw,1.5rem);letter-spacing:.16em;color:var(--maroon);
+  text-shadow:0 1px 0 rgba(255,246,214,.5);
 }
 .hero-host{
   margin:.55rem 0 0;font-size:clamp(.68rem,2.6vw,.82rem);
-  letter-spacing:.3em;text-transform:uppercase;color:rgba(255,236,196,.72);
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);opacity:.9;
 }
 
 .scroll-cue{
