@@ -371,6 +371,20 @@
   });
 
   /* ─────────────────────────────────────────────
+     Hero murti video — hold on a grand mid-zoom
+     frame instead of looping back to the wide shot
+     ───────────────────────────────────────────── */
+  var murtiVideo = $('.murti-video');
+  if (murtiVideo) {
+    murtiVideo.addEventListener('timeupdate', function onTime() {
+      if (murtiVideo.currentTime >= 5.5) {
+        murtiVideo.pause();
+        murtiVideo.removeEventListener('timeupdate', onTime);
+      }
+    });
+  }
+
+  /* ─────────────────────────────────────────────
      Music toggle
      ───────────────────────────────────────────── */
   var musicBtn = $('#musicBtn');
@@ -379,44 +393,6 @@
     musicBtn.setAttribute('aria-pressed', String(on));
     $('use', musicBtn).setAttribute('href', on ? '#i-sound-on' : '#i-sound-off');
     toast(on ? '🔔 Temple ambience on' : 'Sound off');
-  });
-
-  /* ─────────────────────────────────────────────
-     Day modal
-     ───────────────────────────────────────────── */
-  var DAYS = {
-    1: { day: 'Day One', title: '14<sup>th</sup> September' },
-    2: { day: 'Day Two', title: '15<sup>th</sup> September' },
-    3: { day: 'Day Three', title: '16<sup>th</sup> September' }
-  };
-
-  var modal = $('#modal');
-  var lastFocus = null;
-
-  function openModal(key) {
-    var d = DAYS[key];
-    if (!d) return;
-    $('#modalDay').textContent = d.day;
-    $('#modalTitle').innerHTML = d.title;
-    lastFocus = document.activeElement;
-    modal.hidden = false;
-    lockScroll();
-    $('.modal-close', modal).focus();
-    Audio_.ding();
-  }
-
-  function closeModal() {
-    modal.hidden = true;
-    unlockScroll();
-    if (lastFocus) lastFocus.focus({ preventScroll: true });
-  }
-
-  $$('.tl-node').forEach(function (b) {
-    b.addEventListener('click', function () { openModal(b.dataset.day); });
-  });
-  $$('[data-close]', modal).forEach(function (n) { n.addEventListener('click', closeModal); });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden) closeModal();
   });
 
   /* ─────────────────────────────────────────────
