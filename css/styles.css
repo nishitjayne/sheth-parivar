@@ -330,6 +330,12 @@ body.is-open .pushp-btn{opacity:1;pointer-events:auto}
   filter:drop-shadow(0 14px 30px rgba(40,18,4,.5));
   animation:murtiIn 1.6s var(--ease) both;
 }
+.murti-video{
+  width:92%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:center 28%;
+  border:4px solid var(--gold-light);
+  box-shadow:0 0 0 2px rgba(122,30,30,.35), 0 14px 34px rgba(40,18,4,.55);
+  background:#3a1c08;
+}
 @keyframes murtiIn{from{opacity:0;transform:translateY(26px) scale(.9)}to{opacity:1;transform:none}}
 .murti-halo{
   position:absolute;z-index:1;width:132%;aspect-ratio:1;border-radius:50%;

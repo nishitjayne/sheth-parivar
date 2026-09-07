@@ -385,24 +385,9 @@
      Day modal
      ───────────────────────────────────────────── */
   var DAYS = {
-    1: {
-      day: 'Day One',
-      title: '14<sup>th</sup> September',
-      time: 'Sthapana &amp; Darshan',
-      desc: 'Bappa arrives home. Join us for the Sthapana, the first aarti and darshan — and take His blessings with your family.'
-    },
-    2: {
-      day: 'Day Two',
-      title: '15<sup>th</sup> September',
-      time: 'Darshan &amp; Aarti',
-      desc: 'A full day of darshan, prasad and aarti. Come whenever you can — our doors stay open for you all day.'
-    },
-    3: {
-      day: 'Day Three',
-      title: '🪔 Ganesh Visarjan',
-      time: 'Visarjan Aarti — 7:30 PM',
-      desc: 'The final aarti before we bid Bappa farewell. Do join us at 7:30 PM for the Visarjan Aarti and the send-off.<br /><br />🙏 मंगलमूर्ती मोरया 🙏'
-    }
+    1: { day: 'Day One', title: '14<sup>th</sup> September' },
+    2: { day: 'Day Two', title: '15<sup>th</sup> September' },
+    3: { day: 'Day Three', title: '16<sup>th</sup> September' }
   };
 
   var modal = $('#modal');
@@ -413,8 +398,6 @@
     if (!d) return;
     $('#modalDay').textContent = d.day;
     $('#modalTitle').innerHTML = d.title;
-    $('#modalTime').innerHTML = d.time;
-    $('#modalDesc').innerHTML = d.desc;
     lastFocus = document.activeElement;
     modal.hidden = false;
     lockScroll();
