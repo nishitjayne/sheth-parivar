@@ -7,10 +7,10 @@
   --ink-soft:#6B4326;
   --maroon:#7A1E1E;
   --maroon-deep:#5A1414;
-  --gold-deep:#8A5A18;
-  --gold:#B8842D;
-  --gold-mid:#D2A45B;
-  --gold-light:#F3CF73;
+  --gold-deep:#6E4409;
+  --gold:#A9761E;
+  --gold-mid:#C99A44;
+  --gold-light:#EFC873;
   --gold-pale:#F7E3AE;
   --cream:#FDF6E7;
   --cream-2:#F6E9C9;
@@ -20,10 +20,10 @@
   --royal:#5B2D8E;
   --leaf:#3F6B2B;
 
-  --font-display:"Yatra One", "Noto Serif Devanagari", serif;
+  --font-display:"Cinzel", "Noto Serif Devanagari", serif;
   --font-dev:"Tiro Devanagari Marathi","Noto Serif Devanagari", serif;
   --font-serif:"Cormorant Garamond", Georgia, serif;
-  --font-body:"Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body:"EB Garamond", Georgia, serif;
 
   --sec-pad:clamp(64px, 11vw, 128px);
   --wrap:min(1120px, 100% - 2.4rem);
