@@ -102,18 +102,6 @@
     <circle cx="24" cy="21" r="8" fill="#FDF6E7"/>
   </symbol>
 
-  <!-- ─── Clock ─── -->
-  <symbol id="i-clock" viewBox="0 0 48 48">
-    <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="4"/>
-    <path d="M24 12 V25 L33 30" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- ─── Calendar ─── -->
-  <symbol id="i-calendar" viewBox="0 0 48 48">
-    <rect x="5" y="9" width="38" height="34" rx="5" fill="none" stroke="currentColor" stroke-width="4"/>
-    <path d="M5 20 H43 M15 4 V13 M33 4 V13" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-  </symbol>
-
   <!-- ─── Sound on / off ─── -->
   <symbol id="i-sound-on" viewBox="0 0 32 32">
     <path fill="currentColor" d="M6 12h5l7-6v20l-7-6H6z"/>
@@ -165,40 +153,14 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-sky"></div>
-  <div class="dust-layer" id="dustLayer" aria-hidden="true"></div>
 
-  <!-- toran / garland -->
-  <svg class="toran" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-    <path id="toranPath" d="M0 6 Q300 108 600 62 Q900 16 1200 96" fill="none" stroke="#3F6B2B" stroke-width="5"/>
-    <g id="toranFlowers"></g>
-  </svg>
-
-  <div class="shrine">
-    <div class="pillar pillar--left" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="pillar pillar--right" aria-hidden="true"><i></i><i></i><i></i></div>
-
-    <span class="bell-cord bell-cord--left" aria-hidden="true"></span>
-    <span class="bell-cord bell-cord--right" aria-hidden="true"></span>
-    <svg class="hang-bell hang-bell--left" viewBox="0 0 100 160" aria-hidden="true"><use href="#i-bell"/></svg>
-    <svg class="hang-bell hang-bell--right" viewBox="0 0 100 160" aria-hidden="true"><use href="#i-bell"/></svg>
-
-    <div class="arch" aria-hidden="true"></div>
-
-    <div class="murti-wrap">
-      <span class="murti-halo" aria-hidden="true"></span>
-      <svg class="murti-rays" viewBox="0 0 400 400" aria-hidden="true"><g id="rays"></g></svg>
-      <video class="murti murti-video" autoplay muted playsinline aria-label="Lord Ganesha">
-        <source src="assets/bappa-hero.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <svg class="floor-diya floor-diya--left" viewBox="0 0 120 110" aria-hidden="true"><use href="#i-diya"/></svg>
-    <svg class="floor-diya floor-diya--right" viewBox="0 0 120 110" aria-hidden="true"><use href="#i-diya"/></svg>
-  </div>
+  <video class="hero-video" autoplay muted playsinline aria-label="Ganpati Bappa Morya invitation">
+    <source src="assets/hero-invite.mp4" type="video/mp4" />
+  </video>
+  <span class="hero-video-mask" aria-hidden="true"></span>
+  <span class="hero-video-scrim" aria-hidden="true"></span>
 
   <div class="hero-copy">
-    <p class="hero-shlok reveal-h" data-step="1">॥ श्री गणेशाय नमः ॥</p>
-    <p class="hero-morya reveal-h" data-step="2">🙏 गणपती बाप्पा मोरया 🙏</p>
     <h1 class="sr-only">Ganesh Utsav 2026</h1>
     <p class="hero-dates reveal-h" data-step="4">14<sup>th</sup> &middot; 15<sup>th</sup> &middot; 16<sup>th</sup> September</p>
     <p class="hero-host reveal-h" data-step="5">Sheth Family &middot; Bhayandar West</p>
@@ -256,6 +218,14 @@
   </div>
 </section>
 
+<!-- ══════════════════ DARSHAN (page 2) ══════════════════ -->
+<section class="sec sec--poster" id="darshan">
+  <div class="wrap wrap--poster">
+    <img class="poster-img reveal" src="assets/darshan-poster.webp" width="941" height="1672" loading="lazy"
+      alt="Ganesh Utsav — Darshan on 14th, 15th &amp; 16th September. We would be delighted to have you and your family join us for Bappa's Darshan and blessings during these three auspicious days." />
+  </div>
+</section>
+
 <!-- ══════════════════ FAMILY ══════════════════ -->
 <section class="sec sec--family" id="family">
   <div class="wrap">
@@ -278,32 +248,16 @@
   </div>
 </section>
 
-<!-- ══════════════════ VENUE ══════════════════ -->
-<section class="sec sec--venue" id="venue">
-  <div class="wrap">
-    <p class="eyebrow reveal">📍 Venue</p>
-    <h2 class="sec-title reveal">Come home for Darshan</h2>
-    <div class="divider reveal" aria-hidden="true"><i></i><svg viewBox="0 0 120 70"><use href="#i-lotus"/></svg><i></i></div>
+<!-- ══════════════════ VENUE (page 3) ══════════════════ -->
+<section class="sec sec--poster sec--venue" id="venue">
+  <div class="wrap wrap--poster">
+    <img class="poster-img reveal" src="assets/venue-poster.webp" width="941" height="1672" loading="lazy"
+      alt="Venue: 206, Magnum Plaza, 90 Feet Road, Opp. Old Registration Office, Bhayandar West. Invited with love by Sarju Sheth, Komal Sheth &amp; Family." />
 
-    <div class="venue-card reveal">
-      <span class="venue-pin" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#i-pin"/></svg></span>
-      <address class="venue-address">
-        <strong>206, Magnum Plaza,</strong>
-        90 Feet Road,<br />
-        Opp. Old Registration Office,<br />
-        Bhayandar West.
-      </address>
-
-      <ul class="venue-facts">
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-calendar"/></svg><span><b>Darshan</b>14th, 15th &amp; 16th September</span></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-clock"/></svg><span><b>Visarjan Aarti</b>16th September &mdash; 7:30 PM</span></li>
-      </ul>
-
-      <a class="maps-btn" id="mapsBtn" href="https://www.google.com/maps/search/?api=1&amp;query=Magnum%20Plaza%2C%2090%20Feet%20Road%2C%20Bhayandar%20West%2C%20Thane%2C%20Maharashtra%20401101" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 48 60" aria-hidden="true"><use href="#i-pin"/></svg>
-        Open in Google Maps
-      </a>
-    </div>
+    <a class="maps-btn reveal" id="mapsBtn" href="https://www.google.com/maps/search/?api=1&amp;query=Magnum%20Plaza%2C%2090%20Feet%20Road%2C%20Bhayandar%20West%2C%20Thane%2C%20Maharashtra%20401101" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 48 60" aria-hidden="true"><use href="#i-pin"/></svg>
+      Open in Google Maps
+    </a>
   </div>
 </section>
 
