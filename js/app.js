@@ -76,8 +76,107 @@
     g.appendChild(el('circle', { cx: cx, cy: cy, r: 20, fill: 'currentColor', opacity: 0.3 }));
   }
 
+  function buildRays(g) {
+    if (!g) return;
+    for (var i = 0; i < 32; i++) {
+      var long = i % 2 === 0;
+      g.appendChild(el('path', {
+        d: long ? 'M200 34 L206 96 L194 96 Z' : 'M200 62 L204 100 L196 100 Z',
+        fill: 'currentColor', opacity: long ? 0.55 : 0.3,
+        transform: 'rotate(' + (i * 11.25) + ' 200 200)'
+      }));
+    }
+  }
+
+  /* The toran is drawn at true pixel scale (viewBox === element size) so the
+     marigolds stay round instead of being stretched by the viewBox. */
+  function buildToran() {
+    var svg = $('.toran');
+    var g = $('#toranFlowers');
+    var path = $('#toranPath');
+    if (!svg || !g || !path) return;
+
+    var W = Math.round(svg.clientWidth) || 1200;
+    var H = Math.round(svg.clientHeight) || 120;
+    if (W < 10) return;
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('preserveAspectRatio', 'none');
+
+    // a double swag hanging from the top corners
+    var sag = H * 0.42;
+    var d = 'M0 2 Q' + (W * 0.25) + ' ' + sag + ' ' + (W * 0.5) + ' ' + (sag * 0.62) +
+            ' Q' + (W * 0.75) + ' ' + (sag * 0.12) + ' ' + W + ' ' + (sag * 0.8);
+    path.setAttribute('d', d);
+    g.textContent = '';
+
+    var len = path.getTotalLength();
+    var step = 26;                       // px between hangings
+    var count = Math.max(8, Math.round(len / step));
+    var r = Math.max(5, Math.min(9, H * 0.075));
+
+    for (var i = 0; i <= count; i++) {
+      var pt = path.getPointAtLength((i / count) * len);
+      // NOTE: position lives on an outer <g> attribute; the CSS sway animation
+      // goes on an inner <g>, because a CSS transform would override the attribute.
+      var pos = el('g', {
+        transform: 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ')'
+      });
+      var wrap = el('g', {
+        'class': 'toran-flower',
+        style: 'animation-delay:' + (-(i % 7) * 0.42).toFixed(2) + 's'
+      });
+      pos.appendChild(wrap);
+      if (i % 3 === 2) {
+        // mango leaf
+        wrap.appendChild(el('line', { x1: 0, y1: 0, x2: 0, y2: r, stroke: '#3F6B2B', 'stroke-width': 1.5 }));
+        wrap.appendChild(el('path', {
+          d: 'M0 ' + r + ' C' + (-r) + ' ' + (r * 2) + ' ' + (-r * 0.85) + ' ' + (r * 4) + ' 0 ' + (r * 5) +
+             ' C' + (r * 0.85) + ' ' + (r * 4) + ' ' + r + ' ' + (r * 2) + ' 0 ' + r + ' Z',
+          fill: 'url(#gradLeaf)'
+        }));
+      } else {
+        // marigold on a short stem
+        var drop = r * (i % 2 ? 2.6 : 1.7);
+        wrap.appendChild(el('line', { x1: 0, y1: 0, x2: 0, y2: drop, stroke: '#3F6B2B', 'stroke-width': 1.6 }));
+        wrap.appendChild(el('circle', { cx: 0, cy: drop + r, r: r, fill: 'url(#gradMarigold)' }));
+        wrap.appendChild(el('circle', { cx: 0, cy: drop + r, r: r * 0.55, fill: '#FFD36A', opacity: 0.8 }));
+        wrap.appendChild(el('circle', { cx: 0, cy: drop + r, r: r * 0.22, fill: '#C8551A' }));
+      }
+      g.appendChild(pos);
+    }
+  }
+
+  function buildDust(layer) {
+    if (!layer || reduced) return;
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < 46; i++) {
+      var d = document.createElement('span');
+      var size = 1.5 + Math.random() * 3.5;
+      d.className = 'dust';
+      d.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(2) + '%;' +
+        'top:' + (55 + Math.random() * 50).toFixed(2) + '%;' +
+        'width:' + size.toFixed(1) + 'px;height:' + size.toFixed(1) + 'px;' +
+        '--dx:' + ((Math.random() - 0.5) * 90).toFixed(0) + 'px;' +
+        'animation-duration:' + (7 + Math.random() * 11).toFixed(1) + 's;' +
+        'animation-delay:-' + (Math.random() * 14).toFixed(1) + 's';
+      frag.appendChild(d);
+    }
+    layer.appendChild(frag);
+  }
+
   buildMandala($('#mandalaL'));
   buildMandala($('#mandalaR'));
+  buildRays($('#rays'));
+  buildDust($('#dustLayer'));
+  requestAnimationFrame(buildToran);
+
+  var toranTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(toranTimer);
+    toranTimer = setTimeout(buildToran, 180);
+  });
 
   /* ─────────────────────────────────────────────
      Audio — bundled aarti if present, else a
@@ -200,7 +299,6 @@
     document.body.classList.add('is-open');
     $$('.reveal-h').forEach(function (n) { n.style.setProperty('--step', n.dataset.step || 1); });
     showersPetals(26);
-    startAmbientPetals();
     setTimeout(function () { curtain.classList.add('is-gone'); }, 2200);
   }
 
@@ -257,12 +355,6 @@
     }
   }
 
-  var ambientTimer = null;
-  function startAmbientPetals() {
-    if (reduced || !petalLayer || ambientTimer) return;
-    ambientTimer = setInterval(function () { showersPetals(1); }, 550 + Math.random() * 400);
-  }
-
   var countEl = $('#pushpCount');
   var count = 0;
   try { count = parseInt(localStorage.getItem('gu26-pushpanjali') || '0', 10) || 0; } catch (e) {}
@@ -277,6 +369,20 @@
     if (count === 1) toast('🌸 पुष्पांजली अर्पण — Bappa bless you');
     else if (count % 11 === 0) toast('🙏 ' + count + ' pushpanjali offered · गणपती बाप्पा मोरया');
   });
+
+  /* ─────────────────────────────────────────────
+     Hero murti video — hold on a grand mid-zoom
+     frame instead of looping back to the wide shot
+     ───────────────────────────────────────────── */
+  var murtiVideo = $('.murti-video');
+  if (murtiVideo) {
+    murtiVideo.addEventListener('timeupdate', function onTime() {
+      if (murtiVideo.currentTime >= 5.5) {
+        murtiVideo.pause();
+        murtiVideo.removeEventListener('timeupdate', onTime);
+      }
+    });
+  }
 
   /* ─────────────────────────────────────────────
      Music toggle
@@ -322,10 +428,10 @@
   }
 
   /* ─────────────────────────────────────────────
-     Gentle parallax on the hero video
+     Gentle parallax on the shrine
      ───────────────────────────────────────────── */
   if (!reduced) {
-    var heroVideoEl = $('.hero-video');
+    var shrine = $('.shrine');
     var heroCopy = $('.hero-copy');
     var ticking = false;
     window.addEventListener('scroll', function () {
@@ -334,11 +440,9 @@
       requestAnimationFrame(function () {
         var y = window.scrollY;
         if (y < window.innerHeight * 1.2) {
-          if (heroVideoEl) heroVideoEl.style.transform = 'translateY(' + (y * 0.16).toFixed(1) + 'px)';
-          if (heroCopy) {
-            heroCopy.style.transform = 'translateX(-50%) translateY(' + (y * -0.05).toFixed(1) + 'px)';
-            heroCopy.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.75)).toFixed(2);
-          }
+          shrine.style.transform = 'translateY(' + (y * 0.16).toFixed(1) + 'px)';
+          heroCopy.style.transform = 'translateY(' + (y * -0.05).toFixed(1) + 'px)';
+          heroCopy.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.75)).toFixed(2);
         }
         ticking = false;
       });
