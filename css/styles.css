@@ -31,8 +31,8 @@
   --font-dev:"Tiro Devanagari Marathi","Noto Serif Devanagari", serif;
   --font-serif:"Cormorant Garamond", Georgia, serif;
   --font-body:"EB Garamond", Georgia, serif;
-  --font-plaque:"Italiana", "Cormorant Garamond", serif;
-  --font-script:"Mrs Saint Delafield", "Cormorant Garamond", cursive;
+  --font-plaque:"Rozha One", "Cormorant Garamond", serif;
+  --font-script:"Yeseva One", "Cormorant Garamond", serif;
 
   --sec-pad:clamp(64px, 11vw, 128px);
   --wrap:min(1120px, 100% - 2.4rem);
@@ -383,7 +383,7 @@ body.is-open .pushp-btn{opacity:1;pointer-events:auto}
 }
 .hero-dates{
   margin:.7rem 0 0;font-family:var(--font-plaque);font-weight:400;
-  font-size:clamp(1.1rem,4.3vw,1.68rem);letter-spacing:.06em;color:var(--wine-deep);
+  font-size:clamp(.94rem,3.6vw,1.4rem);letter-spacing:.03em;color:var(--wine-deep);
   text-shadow:0 1px 0 rgba(255,244,247,.55);
 }
 .hero-host{
@@ -642,8 +642,8 @@ body.is-open .reveal-h{
 
 .footer-invited{margin:0 0 .6rem;font-size:.68rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--wine-deep);text-shadow:0 1px 0 rgba(255,246,249,.5)}
 .footer-family{
-  margin:.15rem 0 0;font-family:var(--font-script);font-weight:400;line-height:1.15;
-  font-size:clamp(1.7rem,6.4vw,3rem);text-wrap:balance;letter-spacing:.01em;
+  margin:.3rem 0 0;font-family:var(--font-script);font-weight:400;line-height:1.3;
+  font-size:clamp(1.1rem,4.2vw,1.85rem);text-wrap:balance;letter-spacing:.01em;
   color:var(--wine-deep);
   text-shadow:0 1px 0 rgba(255,244,247,.5);
 }
